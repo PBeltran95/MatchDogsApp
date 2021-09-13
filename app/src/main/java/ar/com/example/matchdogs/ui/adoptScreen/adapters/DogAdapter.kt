@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.databinding.DogItemBinding
 import com.bumptech.glide.Glide
@@ -24,10 +25,16 @@ class DogAdapter(val images:List<String>):RecyclerView.Adapter<DogAdapter.DogVie
 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         val item:String = images[position]
+        val circleProgressBar = CircularProgressDrawable(context)
+        circleProgressBar.strokeWidth = 5f
+        circleProgressBar.centerRadius = 30f
+        circleProgressBar.start()
+
         with(holder){
             Glide.with(context)
                 .load(item)
                 .centerCrop()
+                .placeholder(circleProgressBar)
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
                 .into(mBiding.imgDog)
         }

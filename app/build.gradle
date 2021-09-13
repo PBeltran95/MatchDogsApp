@@ -75,5 +75,7 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.5"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
+    //GlideProgressBar
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
 }
