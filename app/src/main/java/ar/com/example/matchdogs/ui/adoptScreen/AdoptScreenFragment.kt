@@ -20,7 +20,6 @@ import ar.com.example.matchdogs.ui.adoptScreen.adapters.DogAdapter
 class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter.OnClick{
 
     private lateinit var binding : FragmentAdoptScreenBinding
-    private lateinit var adapter : DogAdapter
     private val viewModel by viewModels<DogViewModel> {
         DogViewModelFactory(DogRepositoryImplements(DogDataSource(RetrofitClient.webService))) }
 
@@ -65,8 +64,7 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
 
     private fun initAdapter(images:List<String>) {
         binding.rvContainer.visibility = View.VISIBLE
-        adapter = DogAdapter(images, this@AdoptScreenFragment)
-        binding.rvContainer.adapter = adapter
+        binding.rvContainer.adapter = DogAdapter(images, this@AdoptScreenFragment)
     }
 
     override fun onDogImageClick(dogImage: String) {

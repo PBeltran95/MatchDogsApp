@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
+            app:destination="@id/favoriteFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_homeFragment_to_adoptScreenFragment"
-            app:destination="@id/adoptScreenFragment" />
+            app:destination="@id/adoptScreenFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -29,7 +37,11 @@
         tools:layout="@layout/fragment_adopt_screen" >
         <action
             android:id="@+id/action_adoptScreenFragment_to_contractFragment"
-            app:destination="@id/contractFragment" />
+            app:destination="@id/contractFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/contractFragment"

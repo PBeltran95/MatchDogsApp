@@ -44,6 +44,7 @@
         android:id="@+id/rvContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="8dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/btnRandomSearch"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,7 +74,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No hay ninguna raza seleccionada"
+            android:text="No dogs searched!"
             android:textAlignment="center"
             android:textSize="22sp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"

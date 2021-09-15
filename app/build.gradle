@@ -79,5 +79,6 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.5"
     //GlideProgressBar
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
+    //Lottie
+    implementation "com.airbnb.android:lottie:4.0.0"
 }

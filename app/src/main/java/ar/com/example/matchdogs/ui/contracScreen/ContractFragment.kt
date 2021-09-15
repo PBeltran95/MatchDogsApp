@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.data.local.AppDataBase
@@ -71,14 +72,14 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
                     "Dog adopted, congratulations!!",
                     Snackbar.LENGTH_SHORT
                 ).show()
-
+                findNavController().popBackStack()
             }
         }
     }
 
     private fun adoptDog(dogName: String, dogGame: String, isLoved: Boolean) {
         val dogToAdopt = DogEntity(
-            imageUrl = dogImage.toString(),
+            imageUrl = dogImage.imgdog,
             name = dogName,
             game = dogGame,
             isFavorite = isLoved

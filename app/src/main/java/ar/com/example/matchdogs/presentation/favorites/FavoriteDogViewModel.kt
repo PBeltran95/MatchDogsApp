@@ -13,25 +13,20 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class FavoriteDogViewModel(private val localRepo: LocalDogRepo):ViewModel() {
+class FavoriteDogViewModel(private val localRepo: LocalDogRepo) : ViewModel() {
 
-    fun fetchFavoriteDogs() = liveData(viewModelScope.coroutineContext + Dispatchers.IO){
-        emit(Response.Loading())
-        try {
-            emit(Response.Success(localRepo.getFavoriteDogs()))
-        }catch (e:Exception){
-            emit(Response.Failure(e))
-        }
+    fun fetchFavoriteDogs() = liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
+            emit((localRepo.getFavoriteDogs()))
     }
 
-    fun saveFavoriteDog(dog:DogEntity) {
+    fun saveFavoriteDog(dog: DogEntity) {
         viewModelScope.launch {
             localRepo.saveDog(dog)
         }
     }
 }
 
-class FavoriteDogViewModelFactory(private val repo: LocalDogRepo): ViewModelProvider.Factory{
+class FavoriteDogViewModelFactory(private val repo: LocalDogRepo) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return modelClass.getConstructor(LocalDogRepo::class.java).newInstance(repo)
     }

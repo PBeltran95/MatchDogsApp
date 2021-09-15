@@ -5,7 +5,7 @@ import java.lang.Exception
 sealed class Response<out T> {
 
     class Loading<out T>: Response<T>()
-    class Success<out T>(val data: T): Response<T>()
+    data class Success<out T>(val data: T): Response<T>()
     class Failure<out T>(val exception: Exception): Response<T>()
 
 }

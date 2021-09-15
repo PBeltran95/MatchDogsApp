@@ -14,6 +14,6 @@ interface DogDao {
     suspend fun saveDog(dog:DogEntity)
 
     @Query("SELECT * FROM dogentity")
-    suspend fun getAllFavoriteDogs():MutableList<DogEntity>
+    suspend fun getAllFavoriteDogs():List<DogEntity>
 
 }
