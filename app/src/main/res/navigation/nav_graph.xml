@@ -26,5 +26,18 @@
         android:id="@+id/adoptScreenFragment"
         android:name="ar.com.example.matchdogs.ui.adoptScreen.AdoptScreenFragment"
         android:label="fragment_adopt_screen"
-        tools:layout="@layout/fragment_adopt_screen" />
+        tools:layout="@layout/fragment_adopt_screen" >
+        <action
+            android:id="@+id/action_adoptScreenFragment_to_contractFragment"
+            app:destination="@id/contractFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contractFragment"
+        android:name="ar.com.example.matchdogs.ui.contracScreen.ContractFragment"
+        android:label="fragment_contract"
+        tools:layout="@layout/fragment_contract">
+        <argument
+            android:name="imgdog"
+            app:argType="string" />
+    </fragment>
 </navigation>

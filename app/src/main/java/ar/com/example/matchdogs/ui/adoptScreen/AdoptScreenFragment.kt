@@ -5,18 +5,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.Response
 import ar.com.example.matchdogs.core.RetrofitClient
 import ar.com.example.matchdogs.data.remote.DogDataSource
 import ar.com.example.matchdogs.databinding.FragmentAdoptScreenBinding
 import ar.com.example.matchdogs.domain.remote.DogRepositoryImplements
-import ar.com.example.matchdogs.presentation.DogViewModel
-import ar.com.example.matchdogs.presentation.DogViewModelFactory
+import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
+import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModelFactory
 import ar.com.example.matchdogs.ui.adoptScreen.adapters.DogAdapter
-import java.util.*
 
-class AdoptScreenFragment : androidx.fragment.app.Fragment(R.layout.fragment_adopt_screen){
+class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter.OnClick{
 
     private lateinit var binding : FragmentAdoptScreenBinding
     private lateinit var adapter : DogAdapter
@@ -64,8 +65,13 @@ class AdoptScreenFragment : androidx.fragment.app.Fragment(R.layout.fragment_ado
 
     private fun initAdapter(images:List<String>) {
         binding.rvContainer.visibility = View.VISIBLE
-        adapter = DogAdapter(images)
+        adapter = DogAdapter(images, this@AdoptScreenFragment)
         binding.rvContainer.adapter = adapter
+    }
+
+    override fun onDogImageClick(dogImage: String) {
+        val action = AdoptScreenFragmentDirections.actionAdoptScreenFragmentToContractFragment(dogImage)
+        findNavController().navigate(action)
     }
 
 }

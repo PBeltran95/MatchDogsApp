@@ -1,4 +1,4 @@
-package ar.com.example.matchdogs.presentation
+package ar.com.example.matchdogs.presentation.adoptScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

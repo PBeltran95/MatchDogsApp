@@ -11,10 +11,10 @@ data class Dogs(@SerializedName("status") val breed:String,
 
 @Entity
 data class DogEntity(
-    @PrimaryKey
-    val id: Int = -1,
-    val imageUrl : String = "",
-    val name:String = "",
-    val description:String = "",
-    val isFavorite: Boolean = false
+    @PrimaryKey(autoGenerate = true)
+    val id: Int =  0,
+    var imageUrl : String = "",
+    var name:String = "",
+    var game:String = "",
+    var isFavorite: Boolean = false
 )
