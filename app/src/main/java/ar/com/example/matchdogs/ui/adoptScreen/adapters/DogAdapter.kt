@@ -10,13 +10,15 @@ import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.databinding.DogItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
 
 class DogAdapter(
     private val images: List<String>,
-    private val onImageDogClickListener: OnClick
+    private val onImageDogClickListener: OnClick,
 ) : RecyclerView.Adapter<DogAdapter.DogViewHolder>() {
 
 
@@ -45,14 +47,15 @@ class DogAdapter(
             Glide.with(context)
                 .load(item)
                 .placeholder(circleProgressBar)
-                .transform(CenterCrop(),RoundedCorners(32))
+                .transform(CenterCrop(), RoundedCorners(64) )
                 .into(mBiding.imgDog)
 
             mBiding.root.setOnClickListener {
                 onImageDogClickListener.onDogImageClick(item)
             }
             mBiding.tvKilometers.text = "Distance (${(1..20).random()} kilometers)"
-
+            val breed = images[position].substringAfter("/breeds/").substringBefore("/").replaceFirstChar(Char::titlecase).replace("-", " ")
+            mBiding.tvBreed.text = breed
         }
 
     }

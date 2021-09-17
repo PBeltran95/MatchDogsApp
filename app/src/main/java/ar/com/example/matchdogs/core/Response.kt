@@ -1,11 +1,10 @@
 package ar.com.example.matchdogs.core
 
-import java.lang.Exception
 
 sealed class Response<out T> {
 
-    class Loading<out T>: Response<T>()
+    class Loading<out T> : Response<T>()
     data class Success<out T>(val data: T): Response<T>()
-    class Failure<out T>(val exception: Exception): Response<T>()
+    data class Failure<out T>(val throwable: Throwable) : Response<T>()
 
 }

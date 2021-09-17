@@ -30,7 +30,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
-        toAnotherScreen()
         switchMode()
         rememberScreenMode()
     }
@@ -45,14 +44,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         })
     }
 
-    private fun toAnotherScreen() {
-        binding.btnAdopt.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_adoptScreenFragment)
-        }
-        binding.btnFavorite.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_favoriteFragment)
-        }
-    }
 
     private fun switchMode(){
         binding.modeSwitch.setOnCheckedChangeListener { compoundButton, checked ->

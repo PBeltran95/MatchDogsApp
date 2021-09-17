@@ -6,6 +6,6 @@ import retrofit2.Retrofit
 
 class DogDataSource(private val webService: WebService) {
 
-    suspend fun getAllDogs(breed:String): Dogs = webService.getDogsByBreed("$breed/images")
+    suspend fun getAllDogs(breed:String): Dogs = webService.getDogsByBreed(breed)
 
 }

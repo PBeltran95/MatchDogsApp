@@ -9,22 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="ar.com.example.matchdogs.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment"
-            app:enterAnim="@anim/from_left"
-            app:exitAnim="@anim/to_right"
-            app:popEnterAnim="@anim/from_right"
-            app:popExitAnim="@anim/to_left" />
-        <action
-            android:id="@+id/action_homeFragment_to_adoptScreenFragment"
-            app:destination="@id/adoptScreenFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="ar.com.example.matchdogs.ui.favorites.FavoriteFragment"

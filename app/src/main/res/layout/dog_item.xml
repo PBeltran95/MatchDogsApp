@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.8" />
+            app:layout_constraintGuide_percent="0.75" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
@@ -45,26 +45,55 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideLine2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
+
                 <TextView
                     android:id="@+id/tvKilometers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_margin="16dp"
                     android:textSize="20sp"
+                    android:textAlignment="center"
                     tools:text="Distance (5 kilometers)"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
                 <ImageView
+                    android:id="@+id/imgDistance"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="8dp"
                     android:src="@drawable/ic_baseline_place_24"
                     app:tint="@color/orange"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tvKilometers"
                     app:layout_constraintTop_toTopOf="@id/tvKilometers"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintEnd_toStartOf="@id/guideLine2"/>
+
+                <TextView
+                    android:id="@+id/tvBreed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    tools:text="Breed"
+                    app:layout_constraintBottom_toTopOf="@id/tvKilometers"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/mediamodifier_design"
+                    app:tint="@color/orange"
+                    app:layout_constraintStart_toStartOf="@id/imgDistance"
+                    app:layout_constraintEnd_toEndOf="@id/imgDistance"
+                    app:layout_constraintTop_toTopOf="@id/tvBreed"
+                    app:layout_constraintBottom_toBottomOf="@id/tvBreed"/>
 
 
 

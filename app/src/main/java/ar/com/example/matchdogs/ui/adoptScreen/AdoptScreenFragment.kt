@@ -8,8 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ar.com.example.matchdogs.R
-import ar.com.example.matchdogs.core.Response
-import ar.com.example.matchdogs.core.RetrofitClient
+import ar.com.example.matchdogs.core.*
 import ar.com.example.matchdogs.data.remote.DogDataSource
 import ar.com.example.matchdogs.databinding.FragmentAdoptScreenBinding
 import ar.com.example.matchdogs.domain.remote.DogRepositoryImplements
@@ -33,7 +32,7 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
     private fun searchRandomDog() {
 
         binding.btnRandomSearch.setOnClickListener {
-            obtainDogs(getDougList())
+            obtainDogs("20")
         }
     }
 
@@ -48,23 +47,24 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
         viewModel.fetchDogs(breed).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Response.Loading -> {
-                    binding.alertView.visibility = View.GONE
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.alertView.hide()
+                    binding.progressBar.show()
                 }
                 is Response.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    initAdapter(it.data.imageUrl)
+                    binding.progressBar.hide()
+                    val puppies = it.data.imageUrl
+                    initAdapter(puppies)
                 }
                 is Response.Failure -> {
-                    Toast.makeText(requireContext(), "Error: ${it.exception}", Toast.LENGTH_LONG).show()
+                    toast(requireContext(), "Error: ${it.throwable}")
                 }
             }
         })
     }
 
     private fun initAdapter(images:List<String>) {
-        binding.rvContainer.visibility = View.VISIBLE
-        binding.rvContainer.adapter = DogAdapter(images, this@AdoptScreenFragment)
+        binding.rvContainer.show()
+        binding.rvContainer.adapter = DogAdapter(images, this@AdoptScreenFragment, )
     }
 
     override fun onDogImageClick(dogImage: String) {
