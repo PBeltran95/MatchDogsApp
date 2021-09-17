@@ -6,6 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/modeSwitch"
+        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dark mode"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieImage"
         android:layout_width="match_parent"

@@ -24,6 +24,8 @@ class FavoriteDogViewModel(private val localRepo: LocalDogRepo) : ViewModel() {
             localRepo.saveDog(dog)
         }
     }
+
+
 }
 
 class FavoriteDogViewModelFactory(private val repo: LocalDogRepo) : ViewModelProvider.Factory {

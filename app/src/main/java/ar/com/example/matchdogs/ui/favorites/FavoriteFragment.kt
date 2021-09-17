@@ -13,6 +13,7 @@ import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.data.local.AppDataBase
 import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
+import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.FragmentFavoriteBinding
 import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModel
@@ -23,8 +24,8 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 
     private lateinit var binding : FragmentFavoriteBinding
     private val viewModel by viewModels<FavoriteDogViewModel> { FavoriteDogViewModelFactory(LocalDogRepoImpl(
-        LocalDogDataSource(AppDataBase.getDatabase(requireContext()).dogDao())
-    )) }
+        LocalDogDataSource(AppDataBase.getDatabase(requireContext()).dogDao()))
+    ) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,6 +42,8 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     private fun initRecyclerView(it: List<DogEntity>?) {
         if (it.isNullOrEmpty()){
             val emptyList = listOf<DogEntity>()
+            binding.emptyHouse.visibility = View.VISIBLE
+            binding.rvFavorites.visibility = View.GONE
             binding.rvFavorites.adapter = FavoriteAdapter(emptyList)
             binding.rvFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
         }else{
@@ -51,5 +54,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
         }
 
     }
+
+
 
 }

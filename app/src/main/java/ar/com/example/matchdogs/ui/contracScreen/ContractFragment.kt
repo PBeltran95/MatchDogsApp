@@ -11,11 +11,13 @@ import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.data.local.AppDataBase
 import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
+import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.FragmentContractBinding
 import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModel
 import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModelFactory
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
@@ -124,9 +126,7 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
         Glide.with(requireContext())
             .load(dogImage.imgdog)
             .useAnimationPool(true)
-            .centerCrop()
-            .fitCenter()
-            .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
+            .transform(CenterCrop(),RoundedCorners(32))
             .into(binding.imgDogEntity)
     }
 

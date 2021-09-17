@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.databinding.DogItemBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
@@ -43,21 +44,21 @@ class DogAdapter(
         with(holder) {
             Glide.with(context)
                 .load(item)
-                .centerCrop()
                 .placeholder(circleProgressBar)
-                .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
+                .transform(CenterCrop(),RoundedCorners(32))
                 .into(mBiding.imgDog)
 
             mBiding.root.setOnClickListener {
                 onImageDogClickListener.onDogImageClick(item)
             }
+            mBiding.tvKilometers.text = "Distance (${(1..20).random()} kilometers)"
 
         }
 
     }
 
     override fun getItemCount(): Int {
-        val limit = 10
+        val limit = 20
         return if (images.size > limit) {
             limit
         } else images.size

@@ -81,4 +81,6 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     //Lottie
     implementation "com.airbnb.android:lottie:4.0.0"
+    //SharedPreferencesWithCoroutines
+    implementation "androidx.preference:preference-ktx:1.1.1"
 }

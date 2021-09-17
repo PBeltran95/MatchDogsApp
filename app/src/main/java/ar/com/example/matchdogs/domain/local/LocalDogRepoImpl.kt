@@ -2,6 +2,7 @@ package ar.com.example.matchdogs.domain.local
 
 import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
+import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 
 class LocalDogRepoImpl(private val localDataSource: LocalDogDataSource):LocalDogRepo {
 
@@ -12,4 +13,5 @@ class LocalDogRepoImpl(private val localDataSource: LocalDogDataSource):LocalDog
     override suspend fun saveDog(dog: DogEntity) {
         localDataSource.saveDog(dog)
     }
+
 }

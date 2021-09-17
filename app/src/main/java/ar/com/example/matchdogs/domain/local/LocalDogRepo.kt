@@ -8,4 +8,5 @@ interface LocalDogRepo {
 
     suspend fun saveDog(dog:DogEntity)
 
+
 }

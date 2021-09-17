@@ -10,6 +10,7 @@ import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.data.models.DogEntity
 import ar.com.example.matchdogs.databinding.FavoriteItemBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
@@ -54,9 +55,8 @@ class FavoriteAdapter(private val favoriteDogs: List<DogEntity>) :
         with(holder){
             Glide.with(context)
                 .load(dogImage)
-                .centerCrop()
                 .placeholder(circleProgressBar)
-                .apply(RequestOptions.bitmapTransform(RoundedCorners(32)))
+                .transform(CenterCrop(),RoundedCorners(32))
                 .into(binding.imgDog)
             binding.tvDogName.text = dogName
             binding.tvDogGame.text = dogGame

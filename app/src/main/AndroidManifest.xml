@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MatchDogs">
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
