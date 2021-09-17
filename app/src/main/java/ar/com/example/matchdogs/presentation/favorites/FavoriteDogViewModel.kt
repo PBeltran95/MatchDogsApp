@@ -19,9 +19,8 @@ class FavoriteDogViewModel(private val localRepo: LocalDogRepo) : ViewModel() {
         }catch (e:java.lang.Exception){
 
         }
-
-
     }
+
 
     fun saveFavoriteDog(dog: DogEntity) {
         viewModelScope.launch {

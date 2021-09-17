@@ -1,5 +1,6 @@
 package ar.com.example.matchdogs.domain.local
 
+import androidx.lifecycle.LiveData
 import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
 import ar.com.example.matchdogs.data.preferences.PreferencesProvider

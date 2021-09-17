@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import ar.com.example.matchdogs.R
+import ar.com.example.matchdogs.core.hide
+import ar.com.example.matchdogs.core.show
 import ar.com.example.matchdogs.data.local.AppDataBase
 import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
@@ -42,13 +44,13 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     private fun initRecyclerView(it: List<DogEntity>?) {
         if (it.isNullOrEmpty()){
             val emptyList = listOf<DogEntity>()
-            binding.emptyHouse.visibility = View.VISIBLE
-            binding.rvFavorites.visibility = View.GONE
+            binding.emptyHouse.show()
+            binding.rvFavorites.hide()
             binding.rvFavorites.adapter = FavoriteAdapter(emptyList)
             binding.rvFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
         }else{
-            binding.emptyHouse.visibility = View.GONE
-            binding.rvFavorites.visibility = View.VISIBLE
+            binding.emptyHouse.hide()
+            binding.rvFavorites.show()
             binding.rvFavorites.adapter = FavoriteAdapter(it!!)
             binding.rvFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
         }
