@@ -1,6 +1,8 @@
 package ar.com.example.matchdogs.di
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import ar.com.example.matchdogs.application.AppConstants
 import ar.com.example.matchdogs.core.WebService
@@ -51,8 +53,9 @@ object AppModule {
     fun providesWebService(retrofit: Retrofit) = retrofit.create(WebService::class.java)
 
     //Shared Preferences
-
-
+    @Provides
+    fun providesSharedPreferences(@ApplicationContext appContext:Context): SharedPreferences =
+        appContext.getSharedPreferences(AppConstants.KEY_MODE, Context.MODE_PRIVATE)
 
 
 }

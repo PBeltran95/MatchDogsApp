@@ -24,4 +24,6 @@ abstract class ActivityModule {
     abstract fun bindDogRepositoryImplements(remoteDogRepo: DogRepositoryImplements): RepositoryOfDogs
 
 
+    @Binds
+    abstract fun bindSharedPrefsRepoImpl(sharedRepo: SharedPrefsRepoImpl): SharedRepo
 }
