@@ -6,6 +6,7 @@ import androidx.preference.PreferenceManager
 
 private const val KEY_MODE = "MyDataBase"
 
+
 class PreferencesProvider(
     context: Context
 ) {

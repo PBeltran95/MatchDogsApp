@@ -13,26 +13,26 @@ import ar.com.example.matchdogs.data.remote.DogDataSource
 import ar.com.example.matchdogs.databinding.FragmentAdoptScreenBinding
 import ar.com.example.matchdogs.domain.remote.DogRepositoryImplements
 import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
-import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModelFactory
 import ar.com.example.matchdogs.ui.adoptScreen.adapters.DogAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter.OnClick{
 
     private lateinit var binding : FragmentAdoptScreenBinding
-    private val viewModel by viewModels<DogViewModel> {
-        DogViewModelFactory(DogRepositoryImplements(DogDataSource(RetrofitClient.webService))) }
+    private val viewModel by viewModels<DogViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAdoptScreenBinding.bind(view)
         searchRandomDog()
-
+        obtainDogs()
     }
 
     private fun searchRandomDog() {
 
         binding.btnRandomSearch.setOnClickListener {
-            obtainDogs("20")
+            obtainDogs()
         }
     }
 
@@ -43,8 +43,8 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
         return listOfBreeds.random().lowercase()
     }
 
-    private fun obtainDogs(breed:String) {
-        viewModel.fetchDogs(breed).observe(viewLifecycleOwner, Observer {
+    private fun obtainDogs() {
+        viewModel.fetchDogs().observe(viewLifecycleOwner, Observer {
             when(it){
                 is Response.Loading -> {
                     binding.alertView.hide()

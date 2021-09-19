@@ -6,25 +6,21 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import ar.com.example.matchdogs.core.Response
 import ar.com.example.matchdogs.domain.remote.RepositoryOfDogs
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
+import javax.inject.Inject
 
-class DogViewModel(private val repo:RepositoryOfDogs): ViewModel() {
+@HiltViewModel
+class DogViewModel @Inject constructor (private val repo:RepositoryOfDogs): ViewModel() {
 
-    fun fetchDogs(breed:String) = liveData(viewModelScope.coroutineContext + Dispatchers.IO){
+    fun fetchDogs() = liveData(viewModelScope.coroutineContext + Dispatchers.IO){
         emit(Response.Loading())
         try {
-            emit(Response.Success(repo.getDogs(breed)))
+            emit(Response.Success(repo.getDogs()))
         }catch (e:Exception){
             emit(Response.Failure(e))
         }
-    }
-
-}
-
-class DogViewModelFactory(private val repo: RepositoryOfDogs):ViewModelProvider.Factory{
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(RepositoryOfDogs::class.java).newInstance(repo)
     }
 
 }

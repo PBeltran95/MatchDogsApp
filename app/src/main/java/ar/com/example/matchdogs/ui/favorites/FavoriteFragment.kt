@@ -13,21 +13,25 @@ import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.hide
 import ar.com.example.matchdogs.core.show
 import ar.com.example.matchdogs.data.local.AppDataBase
+import ar.com.example.matchdogs.data.local.DogDao
 import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
 import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.FragmentFavoriteBinding
 import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModel
-import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModelFactory
 import ar.com.example.matchdogs.ui.favorites.adapter.FavoriteAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 
+
     private lateinit var binding : FragmentFavoriteBinding
-    private val viewModel by viewModels<FavoriteDogViewModel> { FavoriteDogViewModelFactory(LocalDogRepoImpl(
-        LocalDogDataSource(AppDataBase.getDatabase(requireContext()).dogDao()))
-    ) }
+    private val viewModel by viewModels<FavoriteDogViewModel>()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

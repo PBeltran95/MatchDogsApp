@@ -3,9 +3,12 @@ package ar.com.example.matchdogs.data.remote
 import ar.com.example.matchdogs.core.WebService
 import ar.com.example.matchdogs.data.models.Dogs
 import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class DogDataSource(private val webService: WebService) {
+@Singleton
+class DogDataSource @Inject constructor (private val webService: WebService) {
 
-    suspend fun getAllDogs(breed:String): Dogs = webService.getDogsByBreed(breed)
+    suspend fun getAllDogs(): Dogs = webService.getDogsByBreed()
 
 }

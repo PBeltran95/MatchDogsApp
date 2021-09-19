@@ -2,8 +2,9 @@ package ar.com.example.matchdogs.data.local
 
 import androidx.lifecycle.LiveData
 import ar.com.example.matchdogs.data.models.DogEntity
+import javax.inject.Inject
 
-class LocalDogDataSource(private val dogDao: DogDao) {
+class LocalDogDataSource @Inject constructor (private val dogDao: DogDao) {
 
     suspend fun getFavoriteDogs():List<DogEntity> = dogDao.getAllFavoriteDogs()
 

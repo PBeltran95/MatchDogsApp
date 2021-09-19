@@ -4,6 +4,6 @@ import ar.com.example.matchdogs.data.models.Dogs
 
 interface RepositoryOfDogs {
 
-    suspend fun getDogs(breed:String):Dogs
+    suspend fun getDogs():Dogs
 
 }

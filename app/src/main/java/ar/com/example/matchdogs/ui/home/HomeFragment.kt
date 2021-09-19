@@ -15,8 +15,6 @@ import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.FragmentHomeBinding
 import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.domain.local.sharedPreferences.SharedPrefsRepoImpl
-import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModel
-import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModelFactory
 import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
 import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModelFactory
 

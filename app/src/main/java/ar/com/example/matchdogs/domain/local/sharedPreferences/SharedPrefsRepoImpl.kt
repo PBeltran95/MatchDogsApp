@@ -2,6 +2,7 @@ package ar.com.example.matchdogs.domain.local.sharedPreferences
 
 import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 
+
 class SharedPrefsRepoImpl(private val prefs: PreferencesProvider): SharedRepo {
 
 

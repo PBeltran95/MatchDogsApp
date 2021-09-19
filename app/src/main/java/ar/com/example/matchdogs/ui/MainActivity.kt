@@ -15,7 +15,9 @@ import androidx.navigation.ui.setupWithNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
