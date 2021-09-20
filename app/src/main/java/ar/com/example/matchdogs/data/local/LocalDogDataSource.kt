@@ -1,6 +1,5 @@
 package ar.com.example.matchdogs.data.local
 
-import androidx.lifecycle.LiveData
 import ar.com.example.matchdogs.data.models.DogEntity
 import javax.inject.Inject
 

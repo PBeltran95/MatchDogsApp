@@ -9,12 +9,14 @@ import android.widget.CompoundButton
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.ActivityMainBinding
+import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

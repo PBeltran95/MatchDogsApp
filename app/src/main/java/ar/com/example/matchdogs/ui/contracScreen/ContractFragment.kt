@@ -8,21 +8,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import ar.com.example.matchdogs.R
-import ar.com.example.matchdogs.data.local.AppDataBase
-import ar.com.example.matchdogs.data.local.DogDao
-import ar.com.example.matchdogs.data.local.LocalDogDataSource
 import ar.com.example.matchdogs.data.models.DogEntity
-import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.FragmentContractBinding
-import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.presentation.favorites.FavoriteDogViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint

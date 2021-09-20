@@ -2,7 +2,6 @@ package ar.com.example.matchdogs.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import androidx.room.Room
 import ar.com.example.matchdogs.application.AppConstants
 import ar.com.example.matchdogs.core.WebService
@@ -15,7 +14,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module

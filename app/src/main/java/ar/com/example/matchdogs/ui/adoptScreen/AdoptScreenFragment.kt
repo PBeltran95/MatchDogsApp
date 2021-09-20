@@ -6,12 +6,11 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.*
-import ar.com.example.matchdogs.data.remote.DogDataSource
 import ar.com.example.matchdogs.databinding.FragmentAdoptScreenBinding
-import ar.com.example.matchdogs.domain.remote.DogRepositoryImplements
 import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
 import ar.com.example.matchdogs.ui.adoptScreen.adapters.DogAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +33,13 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
         binding.btnRandomSearch.setOnClickListener {
             obtainDogs()
         }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            obtainDogs()
+
+            binding.swipeRefresh.isRefreshing = false
+        }
+
     }
 
     private fun getDougList():String {
@@ -47,7 +53,6 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
         viewModel.fetchDogs().observe(viewLifecycleOwner, Observer {
             when(it){
                 is Response.Loading -> {
-                    binding.alertView.hide()
                     binding.progressBar.show()
                 }
                 is Response.Success -> {
