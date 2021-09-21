@@ -14,4 +14,8 @@ class LocalDogRepoImpl @Inject constructor (private val localDataSource: LocalDo
         localDataSource.saveDog(dog)
     }
 
+    override suspend fun deleteDog(dog: DogEntity) {
+        localDataSource.deleteDog(dog)
+    }
+
 }

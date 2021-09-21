@@ -11,4 +11,8 @@ class LocalDogDataSource @Inject constructor (private val dogDao: DogDao) {
         dogDao.saveDog(dog)
     }
 
+    suspend fun deleteDog(dog: DogEntity){
+        dogDao.deleteSelectedDog(dog)
+    }
+
 }

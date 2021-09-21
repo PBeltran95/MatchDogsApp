@@ -31,6 +31,12 @@ class FavoriteDogViewModel @Inject constructor(private val localRepo: LocalDogRe
         }
     }
 
+    fun deleteDog(dog: DogEntity){
+        viewModelScope.launch {
+            localRepo.deleteDog(dog)
+        }
+    }
+
 
 }
 

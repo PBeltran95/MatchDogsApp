@@ -28,6 +28,7 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
         obtainDogs()
     }
 
+
     private fun searchRandomDog() {
 
         binding.btnRandomSearch.setOnClickListener {
@@ -69,12 +70,13 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
 
     private fun initAdapter(images:List<String>) {
         binding.rvContainer.show()
-        binding.rvContainer.adapter = DogAdapter(images, this@AdoptScreenFragment, )
+        binding.rvContainer.adapter = DogAdapter(images, this@AdoptScreenFragment)
     }
 
     override fun onDogImageClick(dogImage: String) {
         val action = AdoptScreenFragmentDirections.actionAdoptScreenFragmentToContractFragment(dogImage)
         findNavController().navigate(action)
     }
+
 
 }

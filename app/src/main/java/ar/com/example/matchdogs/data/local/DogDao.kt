@@ -1,9 +1,6 @@
 package ar.com.example.matchdogs.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import ar.com.example.matchdogs.data.models.DogEntity
 
 @Dao
@@ -14,5 +11,11 @@ interface DogDao {
 
     @Query("SELECT * FROM dogentity")
     suspend fun getAllFavoriteDogs():List<DogEntity>
+
+    @Delete
+    suspend fun deleteSelectedDog(dog: DogEntity)
+
+
+
 
 }

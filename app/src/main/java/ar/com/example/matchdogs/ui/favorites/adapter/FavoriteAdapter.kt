@@ -12,12 +12,20 @@ import ar.com.example.matchdogs.databinding.FavoriteItemBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import androidx.recyclerview.widget.DiffUtil
 
-class FavoriteAdapter(private val favoriteDogs: List<DogEntity>) :
-    RecyclerView.Adapter<FavoriteAdapter.FavoriteDogViewHolder>() {
+
+interface OnClickDog {
+    fun onDogClick(dog: DogEntity)
+    fun onLongClick(dog: DogEntity)
+}
+
+class FavoriteAdapter(private var favoriteDogs: List<DogEntity>,
+                      private val onClickedDog: OnClickDog) :
+    RecyclerView.Adapter<FavoriteAdapter.FavoriteDogViewHolder>(){
 
     private lateinit var context:Context
+
 
 
     inner class FavoriteDogViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -38,7 +46,29 @@ class FavoriteAdapter(private val favoriteDogs: List<DogEntity>) :
         val dogFavorite = dog.isFavorite
 
         drawDogInFavorites(dogName, dogGame, dogImage, dogFavorite, holder)
+        deleteDog(holder, dog)
+        seeDog(dog, holder)
     }
+
+    private fun seeDog(dog: DogEntity, holder: FavoriteDogViewHolder) {
+        with(holder){
+            binding.root.setOnClickListener {
+                onClickedDog.onDogClick(dog)
+            }
+        }
+    }
+
+    private fun deleteDog(holder: FavoriteDogViewHolder, dog: DogEntity) {
+
+        with(holder){
+
+            binding.root.setOnLongClickListener {
+                onClickedDog.onLongClick(dog)
+                true
+            }
+        }
+    }
+
 
     private fun drawDogInFavorites(
         dogName: String,
@@ -68,4 +98,16 @@ class FavoriteAdapter(private val favoriteDogs: List<DogEntity>) :
     }
 
     override fun getItemCount(): Int = favoriteDogs.size
+
+
+
+    fun setData(newDogList: List<DogEntity>){
+        val diffUtil = MyAdapterUtil(favoriteDogs, newDogList)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        diffResults.dispatchUpdatesTo(this)
+        favoriteDogs = newDogList
+    }
+
+
+
 }
