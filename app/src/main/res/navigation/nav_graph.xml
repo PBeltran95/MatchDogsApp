@@ -3,23 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="ar.com.example.matchdogs.ui.home.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_pop"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="ar.com.example.matchdogs.ui.favorites.FavoriteFragment"
-        android:label="fragment_favorite"
+        android:label="Adopted"
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/adoptScreenFragment"
         android:name="ar.com.example.matchdogs.ui.adoptScreen.AdoptScreenFragment"
-        android:label="fragment_adopt_screen"
-        tools:layout="@layout/fragment_adopt_screen" >
+        android:label="Adopt a dog"
+        tools:layout="@layout/fragment_adopt_screen">
         <action
             android:id="@+id/action_adoptScreenFragment_to_contractFragment"
             app:destination="@id/contractFragment"
@@ -31,10 +36,43 @@
     <fragment
         android:id="@+id/contractFragment"
         android:name="ar.com.example.matchdogs.ui.contracScreen.ContractFragment"
-        android:label="fragment_contract"
+        android:label="Contract"
         tools:layout="@layout/fragment_contract">
         <argument
             android:name="imgdog"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ar.com.example.matchdogs.ui.auth.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="ar.com.example.matchdogs.ui.auth.signUp.RegisterFragment"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 </navigation>

@@ -16,11 +16,11 @@ import kotlin.Exception
 class FavoriteDogViewModel @Inject constructor(private val localRepo: LocalDogRepo) : ViewModel() {
 
     fun fetchFavoriteDogs() = liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
-
+        emit(Response.Loading<Nothing>())
         try {
-            emit((localRepo.getFavoriteDogs()))
+            emit(Response.Success(localRepo.getFavoriteDogs()))
         }catch (e:java.lang.Exception){
-
+            emit(Response.Failure(e))
         }
     }
 

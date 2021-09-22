@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.com.example.matchdogs.R
+import ar.com.example.matchdogs.core.Response
 import ar.com.example.matchdogs.core.hide
 import ar.com.example.matchdogs.core.show
 import ar.com.example.matchdogs.core.toast
@@ -37,7 +38,20 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), OnClickDog {
 
     private fun recoverDogsFromDb() {
         viewModel.fetchFavoriteDogs().observe(viewLifecycleOwner, Observer {
-            initRecyclerView(it)
+
+            when(it){
+                is Response.Loading -> {binding.progressBar.show()}
+                is Response.Success -> {
+                    binding.progressBar.hide()
+                    initRecyclerView(it.data)
+                    }
+                is Response.Failure -> {
+                    binding.emptyHouse.show()
+                    toast(requireContext(), "Error: ${it.throwable}")}
+
+            }
+
+
         })
     }
 

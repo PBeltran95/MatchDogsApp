@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "348068360460",
+    "project_id": "matchdogs-7eda1",
+    "storage_bucket": "matchdogs-7eda1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348068360460:android:487da1dd111d285fb3d929",
+        "android_client_info": {
+          "package_name": "ar.com.example.matchdogs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348068360460-22inhdiigmsg53tobgurm5qfl1pb1eoj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAysMtaoaS0iLQByki6kdMkVc1KkiOWddQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348068360460-22inhdiigmsg53tobgurm5qfl1pb1eoj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

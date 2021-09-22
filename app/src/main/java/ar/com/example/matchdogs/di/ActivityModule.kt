@@ -1,5 +1,7 @@
 package ar.com.example.matchdogs.di
 
+import ar.com.example.matchdogs.domain.auth.LoginRepo
+import ar.com.example.matchdogs.domain.auth.LoginRepoImpl
 import ar.com.example.matchdogs.domain.local.LocalDogRepo
 import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.domain.local.sharedPreferences.SharedPrefsRepoImpl
@@ -26,4 +28,7 @@ abstract class ActivityModule {
 
     @Binds
     abstract fun bindSharedPrefsRepoImpl(sharedRepo: SharedPrefsRepoImpl): SharedRepo
+
+    @Binds
+    abstract fun bindLoginRepoImpl(loginRepo: LoginRepoImpl): LoginRepo
 }

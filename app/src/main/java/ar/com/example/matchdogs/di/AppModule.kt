@@ -6,6 +6,8 @@ import androidx.room.Room
 import ar.com.example.matchdogs.application.AppConstants
 import ar.com.example.matchdogs.core.WebService
 import ar.com.example.matchdogs.data.local.AppDataBase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -54,6 +56,15 @@ object AppModule {
     @Provides
     fun providesSharedPreferences(@ApplicationContext appContext:Context): SharedPreferences =
         appContext.getSharedPreferences(AppConstants.KEY_MODE, Context.MODE_PRIVATE)
+
+
+    @Singleton
+    @Provides
+    fun provideFirebaseAuthInstance():FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Singleton
+    @Provides
+    fun providesFirebaseStorageInstance(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
 
 }
