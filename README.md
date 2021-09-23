@@ -1,8 +1,28 @@
 # MatchDogsApp
 An app in which you can adopt a dog. Take as much dogs as you can in your phone!
 
-Technologies applied to this app at the moment:
 
--RecyclerView -Fragments -Navigation Component -ConstraintLayout was used -Retrofit2 -Room -Safe Args -Shared Preferences -MVVM Architecture -Unit Testing -Dependency Injection -Splash -Extension Functions
+## Features used:
+- Firebase
+- Retrofit2
+- Shared Preferences
+- Room
+- Bottom Navigation View
+- Coroutines
+- MVVM
+- ViewModel & LiveData
+- ViewBinding
+- Dependency Injection with Dagger Hilt
+- Unit Testing
+- Extension functions
+- RecyclerView
+- Fragments
+- Navigation Component
+- ConstraintLayout, MaterialCardView
+- Splash screen
+- And some utils like SwipeToRefresh, CircleImageView, Lottie Animations
+##
+<img src="Screenshots/Screenshot_1.png" width="200" height="400"><img src="Screenshots/Screenshot_2.png" width="200" height="400"><img src="Screenshots/Screenshot_3.png" width="200" height="400"><img src="Screenshots/Screenshot_4.png" width="200" height="400"><img src="Screenshots/Screenshot_5.png" width="200" height="400"><img src="Screenshots/Screenshot_6.png" width="200" height="400"><img src="Screenshots/Screenshot_7.png" width="200" height="400"><img src="Screenshots/Screenshot_8.png" width="200" height="400">
 
--Firebase Login
+
+You can see a video here in : 
