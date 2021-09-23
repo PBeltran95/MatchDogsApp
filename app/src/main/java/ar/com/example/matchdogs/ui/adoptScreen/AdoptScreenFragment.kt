@@ -2,17 +2,17 @@ package ar.com.example.matchdogs.ui.adoptScreen
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.*
 import ar.com.example.matchdogs.databinding.FragmentAdoptScreenBinding
 import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
+import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
 import ar.com.example.matchdogs.ui.adoptScreen.adapters.DogAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +21,6 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
 
     private lateinit var binding : FragmentAdoptScreenBinding
     private val viewModel by viewModels<DogViewModel>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAdoptScreenBinding.bind(view)
@@ -86,6 +85,5 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
         val action = AdoptScreenFragmentDirections.actionAdoptScreenFragmentToContractFragment(dogImage)
         findNavController().navigate(action)
     }
-
 
 }

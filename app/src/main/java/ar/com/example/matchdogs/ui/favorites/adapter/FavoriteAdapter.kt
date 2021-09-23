@@ -77,10 +77,11 @@ class FavoriteAdapter(private var favoriteDogs: List<DogEntity>,
         dogFavorite: Boolean,
         holder: FavoriteDogViewHolder
     ) {
-        val circleProgressBar = CircularProgressDrawable(context)
-        circleProgressBar.strokeWidth = 5f
-        circleProgressBar.centerRadius = 30f
-        circleProgressBar.start()
+        val circleProgressBar =  CircularProgressDrawable(context).apply {
+            strokeWidth = 5f
+            centerRadius = 30f
+            start()
+        }
 
         with(holder){
             Glide.with(context)

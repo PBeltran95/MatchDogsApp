@@ -23,8 +23,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
 
     private lateinit var binding : FragmentUserBinding
-    private val viewModel by viewModels<ScreenModeViewModel>()
     private val authViewModel by viewModels<AuthViewModel>()
+    private val screenModeViewModel by viewModels<ScreenModeViewModel>()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,6 +45,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                     }
                     is Response.Success -> {
 
+                        binding.imgUser.hide()
                         findNavController().navigate(R.id.action_userFragment_to_loginFragment)
                     }
                     is Response.Failure -> {
@@ -79,17 +80,14 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         })
     }
 
-
-
-
-
     private fun rememberScreenMode() {
-        viewModel.fetchScreenMode().observe(viewLifecycleOwner, Observer {
+        screenModeViewModel.fetchScreenMode().observe(viewLifecycleOwner, Observer {
             if (it == true){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 binding.modeSwitch.isChecked = true
 
-            }else{AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)}
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)}
         })
     }
 
@@ -105,12 +103,12 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     private fun lightMode() {
         val mode = false
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        viewModel.saveScreenMode(mode)
+        screenModeViewModel.saveScreenMode(mode)
     }
     private fun darkMode() {
         val mode = true
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        viewModel.saveScreenMode(mode)
+        screenModeViewModel.saveScreenMode(mode)
     }
 
 }

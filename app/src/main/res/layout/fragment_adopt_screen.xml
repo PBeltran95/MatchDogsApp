@@ -6,6 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.adoptScreen.AdoptScreenFragment">
 
+
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRandomSearch"
         android:layout_width="0dp"

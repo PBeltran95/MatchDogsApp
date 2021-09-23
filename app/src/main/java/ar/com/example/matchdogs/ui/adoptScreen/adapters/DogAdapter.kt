@@ -37,10 +37,11 @@ class DogAdapter(
 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
         val item: String = images[position]
-        val circleProgressBar = CircularProgressDrawable(context)
-        circleProgressBar.strokeWidth = 5f
-        circleProgressBar.centerRadius = 30f
-        circleProgressBar.start()
+        val circleProgressBar =  CircularProgressDrawable(context).apply {
+            strokeWidth = 5f
+            centerRadius = 30f
+            start()
+        }
 
 
         with(holder) {
