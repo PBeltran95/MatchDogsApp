@@ -1,7 +1,6 @@
 package ar.com.example.matchdogs.data.remote.auth
 
 import android.graphics.Bitmap
-import android.net.Uri
 import ar.com.example.matchdogs.data.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -34,5 +33,14 @@ class AuthDataSource @Inject constructor (val authInstance: FirebaseAuth, val fi
 
         return authResult.user
     }
+
+    suspend fun getUserInfo(): User? {
+        val userUid = authInstance.currentUser?.uid
+        val queryUser = firebaseFireStore.collection("users").document(userUid!!).get().await()
+        return queryUser.toObject(User::class.java)
+    }
+
+    fun logOut(): Unit = authInstance.signOut()
+
 
 }

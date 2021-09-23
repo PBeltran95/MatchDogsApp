@@ -3,6 +3,7 @@ package ar.com.example.matchdogs.ui.auth.login
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -32,6 +33,15 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
         isUserLoggedIn()
         doLogin()
         toRegister()
+        onBackPressed()
+    }
+
+    private fun onBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                activity!!.finish()
+            }
+        })
     }
 
     private fun toRegister() {
@@ -51,7 +61,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
 
     private fun isUserLoggedIn() {
         firebaseAuth.currentUser?.let {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_adoptScreenFragment)
         }
 
     }
@@ -76,7 +86,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                 }
                 is Response.Success -> {
                     binding.progressBar.hide()
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_loginFragment_to_adoptScreenFragment)
                 }
                 is Response.Failure -> {
                     binding.progressBar.hide()

@@ -6,14 +6,13 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="ar.com.example.matchdogs.ui.home.HomeFragment"
-        android:label="Home"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/userFragment"
+        android:name="ar.com.example.matchdogs.ui.profile.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user" >
         <action
-            android:id="@+id/action_homeFragment_pop"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_userFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -48,19 +47,15 @@
         android:label="Login"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
-        <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_loginFragment_to_adoptScreenFragment"
+            app:destination="@id/adoptScreenFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -68,11 +63,7 @@
         android:label="SignUp"
         tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_registerFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/from_right"
-            app:exitAnim="@anim/to_left"
-            app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right" />
+            android:id="@+id/action_registerFragment_to_adoptScreenFragment"
+            app:destination="@id/adoptScreenFragment" />
     </fragment>
 </navigation>

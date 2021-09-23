@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 
 fun View.hide(){
     this.visibility = View.GONE

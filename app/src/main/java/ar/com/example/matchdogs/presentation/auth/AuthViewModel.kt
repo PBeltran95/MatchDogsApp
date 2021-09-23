@@ -30,4 +30,23 @@ class AuthViewModel @Inject constructor (private val repo: LoginRepo):ViewModel(
         }
     }
 
+    fun getUserInfo() = liveData(Dispatchers.IO) {
+        emit(Response.Loading())
+        try {
+            emit(Response.Success(repo.getUserInfo()))
+        } catch (e: Exception) {
+            emit(Response.Failure(e))
+        }
+    }
+
+    fun logOut()  = liveData(Dispatchers.IO){
+        emit(Response.Loading())
+        try {
+            emit(Response.Success(repo.logOut()))
+        }catch (e:Exception){
+            emit(Response.Failure(e))
+        }
+    }
+
+
 }

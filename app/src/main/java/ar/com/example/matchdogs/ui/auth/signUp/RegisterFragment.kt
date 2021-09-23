@@ -85,7 +85,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
                 is Response.Success -> {
                     binding.progressBar.hide()
-                    findNavController().navigate(R.id.action_registerFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_registerFragment_to_adoptScreenFragment)
                 }
                 is Response.Failure -> {
                     binding.progressBar.hide()
