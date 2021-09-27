@@ -26,3 +26,5 @@ An app in which you can adopt a dog. Take as much dogs as you can in your phone!
 
 
 You can see a video here in : 
+
+https://www.linkedin.com/feed/update/urn:li:activity:6847255538162520064/
