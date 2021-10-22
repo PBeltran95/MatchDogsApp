@@ -3,7 +3,6 @@ package ar.com.example.matchdogs.ui.adoptScreen
 import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.fragment.app.Fragment
@@ -12,7 +11,6 @@ import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.*
 import ar.com.example.matchdogs.databinding.FragmentAdoptScreenBinding
 import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
-import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
 import ar.com.example.matchdogs.ui.adoptScreen.adapters.DogAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,13 +49,6 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
 
     }
 
-    private fun getDougList():String {
-        val dogBreeds = resources.getStringArray(R.array.dogList)
-        val listOfBreeds = listOf(*dogBreeds)
-
-        return listOfBreeds.random().lowercase()
-    }
-
     private fun obtainDogs() {
         viewModel.fetchDogs().observe(viewLifecycleOwner, Observer {
             when(it){
@@ -70,7 +61,7 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
                     initAdapter(puppies)
                 }
                 is Response.Failure -> {
-                    toast(requireContext(), "Error: ${it.throwable}")
+                    toast(requireContext(), getString(R.string.error_of_calling_server, it.throwable))
                 }
             }
         })
@@ -78,7 +69,9 @@ class AdoptScreenFragment : Fragment(R.layout.fragment_adopt_screen), DogAdapter
 
     private fun initAdapter(images:List<String>) {
         binding.rvContainer.show()
-        binding.rvContainer.adapter = DogAdapter(images, this@AdoptScreenFragment)
+        binding.rvContainer.adapter =
+            DogAdapter(images, this@AdoptScreenFragment)
+        binding.rvContainer.scheduleLayoutAnimation()
     }
 
     override fun onDogImageClick(dogImage: String) {

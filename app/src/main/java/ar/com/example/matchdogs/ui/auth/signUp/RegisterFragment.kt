@@ -9,7 +9,6 @@ import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -44,7 +43,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             try {
                 openActivityForResult(takePicture)
             }catch (e: ActivityNotFoundException){
-                toast(requireContext(), "No camera founded")
+                toast(requireContext(), getString(R.string.camera_error))
             }
         }
     }
@@ -90,7 +89,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 is Response.Failure -> {
                     binding.progressBar.hide()
                     binding.btnSignUp.isEnabled = true
-                    toast(requireContext(), "Error: ${it.throwable}")
+                    toast(requireContext(), getString(R.string.error_of_calling_server, it.throwable))
                 }
             }
         })
@@ -106,8 +105,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         if (password != confirmPassword) {
             binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_NONE
             binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.editTextPassword.error = "Password does not match"
-            binding.editTextConfirmPassword.error = "Password does not match"
+            binding.editTextPassword.error = getString(R.string.pass_no_match)
+            binding.editTextConfirmPassword.error = getString(R.string.pass_no_match)
             return true
         } else {
             binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
@@ -120,24 +119,24 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
 
 
         if (userName.isEmpty()) {
-            binding.editTextUserName.error = "User name is empty"
+            binding.editTextUserName.error = getString(R.string.user_empty)
             return true
         }
 
         if (email.isEmpty()) {
-            binding.editTextEmail.error = "Email is empty"
+            binding.editTextEmail.error = getString(R.string.empty_email)
             return true
         }
 
         if (password.isEmpty()) {
             binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.editTextPassword.error = "Password is empty"
+            binding.editTextPassword.error = getString(R.string.empty_pass)
             return true
         } else binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
 
         if (confirmPassword.isEmpty()) {
             binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.editTextConfirmPassword.error = "Confirm password is empty"
+            binding.editTextConfirmPassword.error = getString(R.string.pass_confirmation_empty)
             return true
         } else binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
         return false

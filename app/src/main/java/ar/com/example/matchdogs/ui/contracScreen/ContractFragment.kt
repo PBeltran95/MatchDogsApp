@@ -51,18 +51,18 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
             if (dogName.isEmpty() || dogGame.isEmpty()) {
                 Snackbar.make(
                     binding.root,
-                    "Name and game are required",
+                    getString(R.string.validation_of_dog_name_game),
                     Snackbar.LENGTH_SHORT
                 ).show()
-                binding.tilName.error = "Name is required"
-                binding.tilDescription.error = "Favorite game is required"
+                binding.tilName.error = getString(R.string.validation_of_dog_name)
+                binding.tilDescription.error = getString(R.string.favorite_game_validation)
             } else {
                 adoptDog(dogName, dogGame, favorite)
                 binding.tilName.error = null
                 binding.tilDescription.error = null
                 Snackbar.make(
                     binding.root,
-                    "Dog adopted, congratulations!!",
+                    getString(R.string.adoption_success_message),
                     Snackbar.LENGTH_SHORT
                 ).show()
                 findNavController().popBackStack()
@@ -129,7 +129,7 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
             }.withEndAction {
                 Toast.makeText(
                     requireContext(),
-                    "Woof Woof Woof!! Adopt me Woof Woof",
+                    getString(R.string.dog_message),
                     Toast.LENGTH_SHORT
                 ).show()
             }

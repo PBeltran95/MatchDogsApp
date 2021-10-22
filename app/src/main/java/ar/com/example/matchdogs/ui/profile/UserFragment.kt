@@ -44,12 +44,12 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                         binding.progressBar.show()
                     }
                     is Response.Success -> {
-
-                        binding.imgUser.hide()
                         findNavController().navigate(R.id.action_userFragment_to_loginFragment)
+                        binding.imgUser.hide()
+
                     }
                     is Response.Failure -> {
-                        toast(requireContext(), "An error happened: ${it.throwable}")
+                        toast(requireContext(), getString(R.string.sign_out_error, it.throwable))
                     }
                 }
             })
@@ -75,7 +75,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                     binding.tvUserName.text = user?.username
 
                 }
-                is Response.Failure -> { toast(requireContext(), "Cant recover a valid user") }
+                is Response.Failure -> { toast(requireContext(), getString(R.string.user_img_error)) }
             }
         })
     }

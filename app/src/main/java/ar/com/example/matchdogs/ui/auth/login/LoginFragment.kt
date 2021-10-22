@@ -69,12 +69,12 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
     private fun validateCredentials(email:String, password:String){
         val REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
         when{
-            email.isEmpty() -> binding.etEmail.error = "Email is empty"
-            !REGEX.toRegex().matches(email) -> binding.etEmail.error = "Invalid Email"
-            !email.contains("@") -> binding.etEmail.error = "Invalid Email"
+            email.isEmpty() -> binding.etEmail.error = getString(R.string.empty_email)
+            !REGEX.toRegex().matches(email) -> binding.etEmail.error = getString(R.string.invalid_email)
+            !email.contains("@") -> binding.etEmail.error = getString(R.string.empty_email)
         }
         if (password.isEmpty()){
-            binding.etPassword.error = "Password is empty"
+            binding.etPassword.error = getString(R.string.empty_pass)
         }
     }
     private fun signIn(email:String, password:String){
@@ -91,7 +91,7 @@ class LoginFragment: Fragment(R.layout.fragment_login) {
                 is Response.Failure -> {
                     binding.progressBar.hide()
                     binding.btnLogin.isEnabled = true
-                    toast(requireContext(),"Error: ${it.throwable}")
+                    toast(requireContext(),getString(R.string.error_of_calling_server, it.throwable))
                 }
             }
         })

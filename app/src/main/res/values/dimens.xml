@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="max_margin_padding_value">32dp</dimen>
+    <dimen name="min_margin_padding_value">8dp</dimen>
+    <dimen name="common_margin_padding_value">16dp</dimen>
+    <dimen name="text_size_value">20sp</dimen>
+    <dimen name="medium_large_padding_margin_value">20dp</dimen>
+    <dimen name="card_size">175dp</dimen>
+    <dimen name="heart_size">50dp</dimen>
+    <dimen name="img_size">250dp</dimen>
+    <dimen name="common_medium_size">200dp</dimen>
+    <dimen name="tv_advise_size">18sp</dimen>
+    <dimen name="image_pic">150dp</dimen>
+    <dimen name="log_out_text_size">18sp</dimen>
+</resources>

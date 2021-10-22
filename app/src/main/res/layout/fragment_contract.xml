@@ -13,10 +13,10 @@
 
         <ImageView
             android:id="@+id/imgDogEntity"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_margin="8dp"
-            android:padding="16dp"
+            android:layout_width="@dimen/img_size"
+            android:layout_height="@dimen/img_size"
+            android:layout_margin="@dimen/min_margin_padding_value"
+            android:padding="@dimen/common_margin_padding_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -26,7 +26,7 @@
             android:id="@+id/tilName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/min_margin_padding_value"
             app:helperText="Dog Name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/imgDogEntity">
@@ -46,7 +46,7 @@
             android:id="@+id/tilDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/min_margin_padding_value"
             app:helperText="Favorite game of this dog"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/tilName">
@@ -62,12 +62,12 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/tvProposal"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/common_medium_size"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/common_margin_padding_value"
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:textStyle="bold"
-        android:text="Do you want to adopt me?"
+        android:text="@string/button_text"
         app:layout_constraintTop_toBottomOf="@id/tilDescription"
         app:layout_constraintBottom_toBottomOf="parent"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
@@ -76,8 +76,8 @@
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/cvFavorite"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/heart_size"
+        android:layout_height="@dimen/heart_size"
         android:button="@drawable/favorite_button_states"
         app:layout_constraintStart_toEndOf="@id/tvProposal"
         android:buttonTint="#D50000"

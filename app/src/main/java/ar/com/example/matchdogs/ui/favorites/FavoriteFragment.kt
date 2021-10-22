@@ -47,7 +47,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), OnClickDog {
                     }
                 is Response.Failure -> {
                     binding.emptyHouse.show()
-                    toast(requireContext(), "Error: ${it.throwable}")}
+                    toast(requireContext(), getString(R.string.error_of_calling_server, it.throwable))}
 
             }
 
@@ -69,17 +69,17 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), OnClickDog {
     }
 
     override fun onDogClick(dog: DogEntity) {
-        toast(requireContext(), "${dog.name} Clicked")
+        toast(requireContext(), getString(R.string.click_on_adopted_dog, dog.name))
     }
 
     override fun onLongClick(dog: DogEntity) {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Delete this dog??")
-            .setPositiveButton("Delete"){ _, _ ->
+            .setTitle(getString(R.string.alert_dialog_message))
+            .setPositiveButton(getString(R.string.delete_alert_dialog_positive_button)){ _, _ ->
                 viewModel.deleteDog(dog)
                 recoverDogsFromDb()
             }
-            .setNegativeButton("Cancel", null)
+            .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
 

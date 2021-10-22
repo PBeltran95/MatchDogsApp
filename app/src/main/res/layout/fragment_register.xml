@@ -5,14 +5,14 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="@dimen/common_margin_padding_value"
         tools:context=".ui.auth.signUp.RegisterFragment">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgUser"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_margin="16dp"
+        android:layout_width="@dimen/image_pic"
+        android:layout_height="@dimen/image_pic"
+        android:layout_margin="@dimen/common_margin_padding_value"
         android:clickable="true"
         android:focusable="true"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgUser"
-        android:text="Add an user image"/>
+        android:text="@string/user_image_add"/>
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="User name"
+            android:hint="@string/user_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/imgUser"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,8 +54,8 @@
             android:id="@+id/tilEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="E-mail"
+            android:layout_marginTop="@dimen/min_margin_padding_value"
+            android:hint="@string/e_mail"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/tilUserName">
 
@@ -71,8 +71,8 @@
             android:id="@+id/textInputLayoutPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Password"
+            android:layout_marginTop="@dimen/min_margin_padding_value"
+            android:hint="@string/password"
             app:passwordToggleEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/tilEmail">
@@ -90,8 +90,8 @@
             android:id="@+id/textInputLayoutCofirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Confirm password"
+            android:layout_marginTop="@dimen/min_margin_padding_value"
+            android:hint="@string/confirm_password"
             app:passwordToggleEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutPass">
@@ -111,8 +111,8 @@
             android:id="@+id/btnSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
-            android:layout_marginTop="16dp"
+            android:text="@string/sign_up"
+            android:layout_marginTop="@dimen/common_margin_padding_value"
             app:layout_constraintTop_toBottomOf="@id/textInputLayoutCofirm"/>
 
 

@@ -1,6 +1,38 @@
 <resources>
     <string name="app_name">MatchDogs</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_text">Do you want to adopt me?</string>
+    <string name="empty_adopted_list_text">No one Dog adopted yet...</string>
+    <string name="sign_in">Sign in</string>
+    <string name="not_have_an_account_sign_up">Not have an account? Sign Up</string>
+    <string name="user_image_add">Add an user image</string>
+    <string name="user_name">User name</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="sign_out">Sign out</string>
+    <string name="log_out_text">They are training for you, don\'t make them wait!</string>
+    <string name="user_img_error">Cant recover a valid user</string>
+    <string name="sign_out_error">\"An error happened: %1$s\"</string>
+    <string name="error_of_calling_server">\"Error: %1$s\"</string>
+    <string name="camera_error">No camera founded</string>
+    <string name="user_empty">User name is empty</string>
+    <string name="empty_email">Email is empty</string>
+    <string name="empty_pass">Password is empty</string>
+    <string name="pass_confirmation_empty">Confirm password is empty</string>
+    <string name="pass_no_match">Password does not match</string>
+    <string name="invalid_email">Invalid Email</string>
+    <string name="validation_of_dog_name_game">Name and game are required</string>
+    <string name="validation_of_dog_name">Name is required</string>
+    <string name="favorite_game_validation">Favorite game is required</string>
+    <string name="adoption_success_message">Dog adopted, congratulations!!</string>
+    <string name="dog_message">Woof Woof Woof!! Adopt me Woof Woof</string>
+    <string name="alert_dialog_message">Delete this dog??</string>
+    <string name="delete_alert_dialog_positive_button">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="click_on_adopted_dog">%1$s Clicked</string>
     <string-array name="dogList">
         <item>Affenpinscher</item>
         <item>African</item>
