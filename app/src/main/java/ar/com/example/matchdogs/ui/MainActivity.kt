@@ -1,26 +1,17 @@
 package ar.com.example.matchdogs.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.*
-import androidx.appcompat.widget.SwitchCompat
-
-import android.widget.CompoundButton
+import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.hide
-import ar.com.example.matchdogs.data.preferences.PreferencesProvider
 import ar.com.example.matchdogs.databinding.ActivityMainBinding
-import ar.com.example.matchdogs.presentation.adoptScreen.DogViewModel
 import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

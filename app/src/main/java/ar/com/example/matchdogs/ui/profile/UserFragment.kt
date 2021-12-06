@@ -1,21 +1,17 @@
 package ar.com.example.matchdogs.ui.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.*
 import ar.com.example.matchdogs.databinding.FragmentUserBinding
 import ar.com.example.matchdogs.presentation.auth.AuthViewModel
 import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
