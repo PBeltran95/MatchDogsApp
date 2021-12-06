@@ -1,9 +1,8 @@
 package ar.com.example.matchdogs.ui.spashScreen
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ar.com.example.matchdogs.R
+import androidx.appcompat.app.AppCompatActivity
 import ar.com.example.matchdogs.databinding.ActivitySplashBinding
 import ar.com.example.matchdogs.ui.MainActivity
 

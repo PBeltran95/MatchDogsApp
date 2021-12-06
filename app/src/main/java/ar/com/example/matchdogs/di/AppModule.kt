@@ -48,7 +48,6 @@ object AppModule {
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         .build()
 
-    @Singleton
     @Provides
     fun providesWebService(retrofit: Retrofit) = retrofit.create(WebService::class.java)
 

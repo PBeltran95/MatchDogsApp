@@ -1,11 +1,8 @@
 package ar.com.example.matchdogs.presentation.nightMode
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import ar.com.example.matchdogs.domain.local.LocalDogRepo
-import ar.com.example.matchdogs.domain.local.LocalDogRepoImpl
 import ar.com.example.matchdogs.domain.local.sharedPreferences.SharedRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

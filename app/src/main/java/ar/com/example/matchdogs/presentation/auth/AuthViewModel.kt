@@ -10,8 +10,6 @@ import ar.com.example.matchdogs.core.Response
 import ar.com.example.matchdogs.domain.auth.LoginRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import java.lang.Exception
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 @HiltViewModel

@@ -1,9 +1,6 @@
 package ar.com.example.matchdogs.data.preferences
 
-import android.content.Context
 import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
-import ar.com.example.matchdogs.application.AppConstants
 import javax.inject.Inject
 
 
