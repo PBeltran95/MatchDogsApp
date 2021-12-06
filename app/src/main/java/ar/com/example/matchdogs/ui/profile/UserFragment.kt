@@ -9,14 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ar.com.example.matchdogs.R
-import ar.com.example.matchdogs.core.Response
-import ar.com.example.matchdogs.core.hide
-import ar.com.example.matchdogs.core.show
-import ar.com.example.matchdogs.core.toast
+import ar.com.example.matchdogs.core.*
 import ar.com.example.matchdogs.databinding.FragmentUserBinding
 import ar.com.example.matchdogs.presentation.auth.AuthViewModel
 import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -65,13 +64,9 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 }
                 is Response.Success -> {
                     val user = it.data
+                    binding.imgUser.show()
                     binding.progressBar.hide()
-                    val circleProgressBar = CircularProgressDrawable(requireContext()).apply {
-                        strokeWidth = 5f
-                        centerRadius = 30f
-                        start()
-                    }
-                    Glide.with(requireContext()).load(user?.photoUrl).placeholder(circleProgressBar).into(binding.imgUser)
+                    setGlide(requireContext(), user?.photoUrl, binding.imgUser)
                     binding.tvUserName.text = user?.username
 
                 }

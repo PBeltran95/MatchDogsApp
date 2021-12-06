@@ -133,6 +133,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             binding.editTextPassword.error = getString(R.string.empty_pass)
             return true
         } else binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
+        //isEndIconVisible
 
         if (confirmPassword.isEmpty()) {
             binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_NONE
