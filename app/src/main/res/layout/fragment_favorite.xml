@@ -16,7 +16,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emptyHouse"
+        android:id="@+id/empty_db_animation"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

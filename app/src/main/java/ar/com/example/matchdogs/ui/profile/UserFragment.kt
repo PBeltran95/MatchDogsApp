@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.*
+import ar.com.example.matchdogs.data.models.User
 import ar.com.example.matchdogs.databinding.FragmentUserBinding
 import ar.com.example.matchdogs.presentation.auth.AuthViewModel
 import ar.com.example.matchdogs.presentation.nightMode.ScreenModeViewModel
@@ -60,15 +61,18 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 }
                 is Response.Success -> {
                     val user = it.data
-                    binding.imgUser.show()
-                    binding.progressBar.hide()
-                    setGlide(requireContext(), user?.photoUrl, binding.imgUser)
-                    binding.tvUserName.text = user?.username
-
+                    drawUserData(user)
                 }
                 is Response.Failure -> { toast(requireContext(), getString(R.string.user_img_error)) }
             }
         })
+    }
+
+    private fun drawUserData(user: User?) {
+        binding.imgUser.show()
+        binding.progressBar.hide()
+        setGlide(requireContext(), user?.photoUrl, binding.imgUser)
+        binding.tvUserName.text = user?.username
     }
 
     private fun rememberScreenMode() {

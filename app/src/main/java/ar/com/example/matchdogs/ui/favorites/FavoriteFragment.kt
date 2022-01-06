@@ -39,27 +39,22 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), OnClickDog {
 
             when(it){
                 is Response.Loading -> {binding.progressBar.show()}
-                is Response.Success -> {
-                    binding.progressBar.hide()
-                    initRecyclerView(it.data)
-                    }
+                is Response.Success -> { initRecyclerView(it.data) }
                 is Response.Failure -> {
-                    binding.emptyHouse.show()
+                    binding.emptyDbAnimation.show()
                     toast(requireContext(), getString(R.string.error_of_calling_server, it.throwable))}
-
             }
-
-
         })
     }
 
     private fun initRecyclerView(it: List<DogEntity>?) {
+        binding.progressBar.hide()
         if (it.isNullOrEmpty()){
-            binding.emptyHouse.show()
+            binding.emptyDbAnimation.show()
             binding.rvFavorites.hide()
             binding.rvFavorites.adapter = myAdapterOfFavoriteDogs
         }else{
-            binding.emptyHouse.hide()
+            binding.emptyDbAnimation.hide()
             binding.rvFavorites.show()
             binding.rvFavorites.adapter = myAdapterOfFavoriteDogs
             myAdapterOfFavoriteDogs.setData(it)
