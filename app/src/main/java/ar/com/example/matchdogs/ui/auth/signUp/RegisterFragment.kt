@@ -9,9 +9,9 @@ import android.provider.MediaStore
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.Response
@@ -20,7 +20,6 @@ import ar.com.example.matchdogs.core.show
 import ar.com.example.matchdogs.core.toast
 import ar.com.example.matchdogs.databinding.FragmentRegisterBinding
 import ar.com.example.matchdogs.presentation.auth.AuthViewModel
-import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,6 +34,33 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding = FragmentRegisterBinding.bind(view)
         signUp()
         takeUserImage()
+        checkFields()
+        setupObserver()
+    }
+
+    private fun setupObserver() {
+        viewModel.validUser.observe(viewLifecycleOwner){
+            binding.btnSignUp.isEnabled = it
+        }
+    }
+
+    private fun checkFields() {
+        with(binding){
+            editTextUserName.doAfterTextChanged { captureAndSendValues() }
+            editTextEmail.doAfterTextChanged { captureAndSendValues() }
+            editTextPassword.doAfterTextChanged { captureAndSendValues() }
+            editTextConfirmPassword.doAfterTextChanged { captureAndSendValues() }
+        }
+    }
+
+    private fun captureAndSendValues(){
+        val userImage = bitmap
+        val userName = binding.editTextUserName.text.toString().trim()
+        val email = binding.editTextEmail.text.toString().trim()
+        val password = binding.editTextPassword.text.toString().trim()
+        val confirmPassword = binding.editTextConfirmPassword.text.toString().trim()
+
+        viewModel.validateNewUserValues(userImage, userName, email, password, confirmPassword)
     }
 
     private fun takeUserImage() {
@@ -64,19 +90,23 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         binding.btnSignUp.setOnClickListener {
             val userImage = bitmap
             val userName = binding.editTextUserName.text.toString().trim()
+            val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
             val confirmPassword = binding.editTextConfirmPassword.text.toString().trim()
-            val email = binding.editTextEmail.text.toString().trim()
-
-            if (validateUserData(password, confirmPassword, userName, email, userImage)) return@setOnClickListener
-
-            createUser(email,password,userName, userImage)
+            viewModel.checkPasswordMatches(password, confirmPassword)
+            viewModel.passwordMatches.observe(viewLifecycleOwner){
+                if (it){
+                    createUser(email,password,userName, userImage)
+                }else {
+                    toast(requireContext(), "Passwords doesn't match")
+                }
+            }
         }
 
     }
 
     private fun createUser(email: String, password: String, userName: String, userImage:Bitmap?) {
-        viewModel.signUp(email,password,userName, userImage).observe(viewLifecycleOwner, Observer {
+        viewModel.signUp(email,password,userName, userImage).observe(viewLifecycleOwner) {
             when(it){
                 is Response.Loading -> {
                     binding.progressBar.show()
@@ -92,56 +122,6 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                     toast(requireContext(), getString(R.string.error_of_calling_server, it.throwable))
                 }
             }
-        })
+        }
     }
-
-    private fun validateUserData(
-        password: String,
-        confirmPassword: String,
-        userName: String,
-        email: String,
-        image: Bitmap?
-    ) : Boolean {
-        if (password != confirmPassword) {
-            binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.editTextPassword.error = getString(R.string.pass_no_match)
-            binding.editTextConfirmPassword.error = getString(R.string.pass_no_match)
-            return true
-        } else {
-            binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
-            binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
-        }
-
-        if (image == null){
-            return true
-        }
-
-
-        if (userName.isEmpty()) {
-            binding.editTextUserName.error = getString(R.string.user_empty)
-            return true
-        }
-
-        if (email.isEmpty()) {
-            binding.editTextEmail.error = getString(R.string.empty_email)
-            return true
-        }
-
-        if (password.isEmpty()) {
-            binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.editTextPassword.error = getString(R.string.empty_pass)
-            return true
-        } else binding.textInputLayoutPass.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
-        //isEndIconVisible
-
-        if (confirmPassword.isEmpty()) {
-            binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_NONE
-            binding.editTextConfirmPassword.error = getString(R.string.pass_confirmation_empty)
-            return true
-        } else binding.textInputLayoutCofirm.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
-        return false
-    }
-
-
 }
