@@ -5,7 +5,6 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideBottomBar(navController:NavController) {
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id){
                 R.id.contractFragment -> {binding.bNavigationView.hide()}
 
@@ -51,12 +50,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rememberScreenMode() {
-        screenModeViewModel.fetchScreenMode().observe(this, Observer {
+        screenModeViewModel.fetchScreenMode().observe(this) {
             if (it == true){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
             }else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)}
-        })
+        }
     }
 }

@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import ar.com.example.matchdogs.R
+import ar.com.example.matchdogs.core.hide
+import ar.com.example.matchdogs.core.show
 import ar.com.example.matchdogs.data.models.DogEntity
 import ar.com.example.matchdogs.databinding.FavoriteItemBinding
 import com.bumptech.glide.Glide
@@ -92,8 +94,8 @@ class FavoriteAdapter(private var favoriteDogs: List<DogEntity>,
             binding.tvDogName.text = dogName
             binding.tvDogGame.text = dogGame
             if (dogFavorite){
-                binding.imgFavorite.visibility = View.VISIBLE
-            }
+                binding.imgFavorite.show()
+            }else binding.imgFavorite.hide()
 
         }
     }

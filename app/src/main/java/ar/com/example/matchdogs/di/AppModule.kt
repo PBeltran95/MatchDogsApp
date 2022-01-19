@@ -35,7 +35,6 @@ object AppModule {
         ).build()
 
 
-    @Singleton
     @Provides
     fun provideDogDao(db: AppDataBase) = db.dogDao()
 
@@ -64,6 +63,5 @@ object AppModule {
     @Singleton
     @Provides
     fun providesFirebaseStorageInstance(): FirebaseFirestore = FirebaseFirestore.getInstance()
-
 
 }

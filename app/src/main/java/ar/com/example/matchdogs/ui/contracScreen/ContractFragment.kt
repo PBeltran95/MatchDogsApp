@@ -3,6 +3,7 @@ package ar.com.example.matchdogs.ui.contracScreen
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,45 +29,44 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentContractBinding.bind(view)
-
         drawImage()
         animateImage()
         checkedAnimation()
-        emptyCheckAndClick()
-
+        setupButton()
+        checkFields()
+        setupObservers()
     }
 
-    private fun emptyCheckAndClick() {
+    private fun setupObservers() {
+        viewModel.isDogDataValid.observe(viewLifecycleOwner){
+            binding.tvProposal.isEnabled = it
+        }
+    }
 
+    private fun checkFields() {
+        binding.etName.doAfterTextChanged {
+
+            viewModel.validateDogData()
+            viewModel.validateDogName(it.toString())
+        }
+        binding.etDescription.doAfterTextChanged {
+
+            viewModel.validateDogData()
+            viewModel.validateDogGame(it.toString())
+        }
+    }
+
+    private fun setupButton() {
         binding.tvProposal.setOnClickListener {
-
             val dogName = binding.etName.text.toString().trim()
-            val dogGame = binding.etDescription.text.toString().trim()
-            var favorite = false
+            val dogGame = binding.etDescription.text.toString()
+            val favorite = binding.cvFavorite.isChecked
+            Snackbar.make(
+                binding.root,
+                getString(R.string.adoption_success_message), Snackbar.LENGTH_SHORT).show()
 
-            if (binding.cvFavorite.isChecked) {
-                favorite = true
-            }
-
-            if (dogName.isEmpty() || dogGame.isEmpty()) {
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.validation_of_dog_name_game),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                binding.tilName.error = getString(R.string.validation_of_dog_name)
-                binding.tilDescription.error = getString(R.string.favorite_game_validation)
-            } else {
-                adoptDog(dogName, dogGame, favorite)
-                binding.tilName.error = null
-                binding.tilDescription.error = null
-                Snackbar.make(
-                    binding.root,
-                    getString(R.string.adoption_success_message),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-                findNavController().popBackStack()
-            }
+            adoptDog(dogName, dogGame, favorite)
+            findNavController().popBackStack()
         }
     }
 
@@ -81,7 +81,7 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
     }
 
     private fun checkedAnimation() {
-        binding.cvFavorite.setOnCheckedChangeListener { button, isChecked ->
+        binding.cvFavorite.setOnCheckedChangeListener { _, _ ->
             if (binding.cvFavorite.isChecked) {
                 animateHeart()
             } else {
@@ -117,7 +117,7 @@ class ContractFragment : Fragment(R.layout.fragment_contract) {
         Glide.with(requireContext())
             .load(dogImage.imgdog)
             .useAnimationPool(true)
-            .transform(CenterCrop(),RoundedCorners(32))
+            .transform(CenterCrop(), RoundedCorners(32))
             .into(binding.imgDogEntity)
     }
 

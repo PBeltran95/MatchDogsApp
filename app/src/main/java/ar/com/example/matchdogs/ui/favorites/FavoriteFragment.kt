@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import ar.com.example.matchdogs.R
 import ar.com.example.matchdogs.core.Response
 import ar.com.example.matchdogs.core.hide
@@ -25,39 +24,48 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), OnClickDog {
 
     private lateinit var binding : FragmentFavoriteBinding
     private val viewModel by viewModels<FavoriteDogViewModel>()
-    private val myAdapterOfFavoriteDogs by lazy { FavoriteAdapter(listOf<DogEntity>(),this@FavoriteFragment ) }
+    private val myAdapterOfFavoriteDogs by lazy { FavoriteAdapter(listOf(),this@FavoriteFragment ) }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFavoriteBinding.bind(view)
-        recoverDogsFromDb()
+        setupObservers()
+        initRecyclerView()
     }
 
-    private fun recoverDogsFromDb() {
-        viewModel.fetchFavoriteDogs().observe(viewLifecycleOwner, Observer {
-
+    private fun setupObservers() {
+        viewModel.fetchFavoriteDogs().observe(viewLifecycleOwner) {
             when(it){
                 is Response.Loading -> {binding.progressBar.show()}
-                is Response.Success -> { initRecyclerView(it.data) }
+                is Response.Success -> { setData(it) }
                 is Response.Failure -> {
                     binding.emptyDbAnimation.show()
                     toast(requireContext(), getString(R.string.error_of_calling_server, it.throwable))}
             }
-        })
+        }
+        viewModel.isTheListOfDogsEmpty.observe(viewLifecycleOwner){ isTheListEmpty ->
+            manageEmptyAnimation(isTheListEmpty)
+        }
     }
 
-    private fun initRecyclerView(it: List<DogEntity>?) {
+    private fun setData(it: Response.Success<List<DogEntity>>) {
         binding.progressBar.hide()
-        if (it.isNullOrEmpty()){
+        myAdapterOfFavoriteDogs.setData(it.data)
+    }
+
+    private fun initRecyclerView() {
+        binding.rvFavorites.adapter = myAdapterOfFavoriteDogs
+    }
+
+    private fun manageEmptyAnimation(isTheListEmpty: Boolean) {
+        if (isTheListEmpty){
             binding.emptyDbAnimation.show()
             binding.rvFavorites.hide()
             binding.rvFavorites.adapter = myAdapterOfFavoriteDogs
         }else{
             binding.emptyDbAnimation.hide()
             binding.rvFavorites.show()
-            binding.rvFavorites.adapter = myAdapterOfFavoriteDogs
-            myAdapterOfFavoriteDogs.setData(it)
         }
     }
 
@@ -70,10 +78,9 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite), OnClickDog {
             .setTitle(getString(R.string.alert_dialog_message))
             .setPositiveButton(getString(R.string.delete_alert_dialog_positive_button)){ _, _ ->
                 viewModel.deleteDog(dog)
-                recoverDogsFromDb()
+                setupObservers()
             }
             .setNegativeButton(getString(R.string.cancel), null)
             .show()
     }
-
 }

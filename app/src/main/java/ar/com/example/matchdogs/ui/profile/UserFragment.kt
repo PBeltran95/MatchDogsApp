@@ -76,14 +76,14 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
     private fun rememberScreenMode() {
-        screenModeViewModel.fetchScreenMode().observe(viewLifecycleOwner, Observer {
+        screenModeViewModel.fetchScreenMode().observe(viewLifecycleOwner) {
             if (it == true){
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 binding.modeSwitch.isChecked = true
 
             }else{
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)}
-        })
+        }
     }
 
 
